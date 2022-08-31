@@ -1,5 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
-import contactsSlice from 'features/contacts/contactsSlice';
+import contactsSlice from 'redux/contacts/contactsSlice';
 
 import {
   persistStore,
