@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+import shortid from 'shortid';
 
 const initialState = {
   contacts: [],
@@ -9,17 +10,25 @@ export const contactsSlice = createSlice({
   name: 'contacts',
   initialState,
   reducers: {
-    addContacts: (prevState, { payload }) => {
-      prevState.contacts = [...prevState.contacts, payload];
+    addContacts: (state, { payload }) => {
+      const newContactName = payload.name.toLowerCase();
+
+      if (state.contacts.some(el => el.name.toLowerCase() === newContactName)) {
+        alert(`${payload.name} is already in contacts`);
+      } else {
+        const newContact = {
+          id: shortid(),
+          ...payload,
+        };
+        state.contacts = [...state.contacts, newContact];
+      }
     },
-    deleteContacts: (prevState, { payload }) => {
-      prevState.contacts = prevState.contacts.filter(
-        contact => contact.id !== payload
-      );
+    deleteContacts: (state, { payload }) => {
+      state.contacts = state.contacts.filter(contact => contact.id !== payload);
     },
 
-    filterContacts: (prevState, { payload }) => {
-      prevState.filter = payload;
+    filterContacts: (state, { payload }) => {
+      state.filter = payload;
     },
   },
 });
