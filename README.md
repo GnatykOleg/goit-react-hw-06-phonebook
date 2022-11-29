@@ -8,4 +8,4 @@
 
 #### The store is created with configureStore() The createSlice() function is used. Created actions for saving and deleting a contact, as well as updating the filter React components with Redux logic using react-redux library hooks Used the Redux Persist library to save an array of contacts in local storage.
 
-
+![phonebook](./public/phonebook.jpg)
